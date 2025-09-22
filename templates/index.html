@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page == 'home' %}Wania's World of Crocheting & Swimming{% else %}{{ page.title() }} - Wania's World{% endif %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Wania's World</h1>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('home') }}" class="{% if page == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('crocheting') }}" class="{% if page == 'crocheting' %}active{% endif %}">Crocheting</a></li>
+                <li><a href="{{ url_for('swimming') }}" class="{% if page == 'swimming' %}active{% endif %}">Swimming</a></li>
+                <li><a href="{{ url_for('about') }}" class="{% if page == 'about' %}active{% endif %}">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section (only on home) -->
+    {% if page == 'home' %}
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Wania's World of Hobbies</h2>
+            <p>Dive into crocheting creativity and swimming serenity. Discover my passions!</p>
+            <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Wania's Profile" class="hero-img">
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="container">
+        {% if page == 'home' %}
+            <section class="intro">
+                <h2>A Little About My Passions</h2>
+                <p>Hi! I'm Wania, and I love spending my days with yarn in hand or laps in the pool. Whether I'm crafting cozy scarves or gliding through the water, these hobbies bring me joy and relaxation.</p>
+                <div class="hobby-teaser">
+                    <a href="{{ url_for('crocheting') }}" class="teaser-card crochet">
+                        <h3>Crocheting</h3>
+                        <p>Handmade wonders from simple stitches.</p>
+                    </a>
+                    <a href="{{ url_for('swimming') }}" class="teaser-card swim">
+                        <h3>Swimming</h3>
+                        <p>Embracing the flow of the water.</p>
+                    </a>
+                </div>
+            </section>
+
+        {% elif page == 'crocheting' %}
+            <section class="hobby-section">
+                <h2>My Crocheting Journey</h2>
+                <p>Crocheting is my creative escape. I love turning colorful yarns into blankets, hats, and amigurumi toys. It's therapeutic and rewarding!</p>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/crochet1.jpg') }}" alt="Crochet Project 1">
+                        <p>Cozy Winter Blanket</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/crochet2.jpg') }}" alt="Crochet Project 2">
+                        <p>Cute Amigurumi Bear</p>
+                    </div>
+                </div>
+                <p>Want to try? Start with a simple scarf pattern!</p>
+            </section>
+
+        {% elif page == 'swimming' %}
+            <section class="hobby-section">
+                <h2>My Love for Swimming</h2>
+                <p>Swimming clears my mind and strengthens my body. From leisurely laps to open-water adventures, it's my go-to for feeling alive and refreshed.</p>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/swim1.jpg') }}" alt="Swimming Scene 1">
+                        <p>Poolside Relaxation</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/swim2.jpg') }}" alt="Swimming Scene 2"> <!-- Add this image file -->
+                        <p>Open Water Swim</p>
+                    </div>
+                </div>
+                <h3>Quick Tip</h3>
+                <p>Focus on your breathing to make every stroke smoother. Aim for 30 minutes a day!</p>
+            </section>
+
+        {% elif page == 'about' %}
+            <section class="about-section">
+                <h2>About Wania</h2>
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Wania" class="profile-img">
+                <p>I'm a creative soul who finds balance in crafting and aquatic adventures. By day, I'm [her job, e.g., a graphic designer]; by evening, you'll find me with hooks and goggles. Let's connect if you share these passions!</p>
+                <p>Email: wania@example.com | Instagram: @waniacrochetswims</p>
+            </section>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Wania's World. Made with ❤️ for hobbies.</p>
+    </footer>
+</body>
+</html>
